@@ -13,6 +13,7 @@ def backg(images_path, save_path, extension = "*.jpg"):
 
     i = 0
     for file in files:
+        """Recorrer el directorio"""
         print(file)
         new_img = Image(file)
         mask = new_img.hueDistance(color=Color.WHITE).binarize()
@@ -21,6 +22,7 @@ def backg(images_path, save_path, extension = "*.jpg"):
         i += 1
 
 if __name__ == "__main__":
+    """Correr el modulo desde la consola."""
     import sys
 
     if not sys.argv[3]:
