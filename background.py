@@ -38,8 +38,9 @@ if __name__ == "__main__":
     """Correr el modulo desde la consola."""
     import sys
 
-    if not sys.argv[3]:
+    if len(sys.argv) == 4:
+        backg(sys.argv[1], sys.argv[2], sys.argv[3])
+    elif len(sys.argv) == 3:
         backg(sys.argv[1], sys.argv[2])
     else:
-        backg(sys.argv[1], sys.argv[2], sys.argv[3])
-
+        print('Debe especificar todos los argumentos necesarios.')
