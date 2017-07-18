@@ -1,5 +1,8 @@
 """
 Hecho por Jaisir & Wilson
+
+Librerias:
+- SimpleCV
 """
 
 from SimpleCV import *
