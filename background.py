@@ -1,6 +1,8 @@
 from SimpleCV import *
+import time
 
 def backg(images_path, save_path, extension = "*.jpg"):
+    init = time.time()
     """ Eliminar el fondo blanco de una imagen
 
         Keyword arguments:
@@ -13,13 +15,17 @@ def backg(images_path, save_path, extension = "*.jpg"):
 
     i = 0
     for file in files:
+        i += 1
         """Recorrer el directorio"""
-        print(file)
+        # print(file)
         new_img = Image(file)
         mask = new_img.hueDistance(color=Color.WHITE).binarize()
         result = new_img - mask.invert()
+        # result.show()
         result.save(save_path + '/bk' + str(i) + ".jpg")
-        i += 1
+    
+    end = time.time()
+    print(str(i) + " imagenes procesadas correctamente. Tiempo: " + str(end - init) + " segs.")
 
 if __name__ == "__main__":
     """Correr el modulo desde la consola."""
