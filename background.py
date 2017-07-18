@@ -1,6 +1,13 @@
 from SimpleCV import *
 
-def backg(images_path, extension, save_path):
+def backg(images_path, save_path, extension = "*.jpg"):
+    """ Eliminar el fondo blanco de una imagen
+
+        Keyword arguments:
+        images_path -- la carpeta que contiene las imagenes
+        save_path -- la carpeta donde se guardaran las imagenes modificadas
+        extension -- extension de las imagenes (default: *.jpg)
+    """
     directory = os.path.join(images_path, extension)
     files = glob.glob(directory)
 
@@ -16,5 +23,8 @@ def backg(images_path, extension, save_path):
 if __name__ == "__main__":
     import sys
 
-    backg(sys.argv[1], sys.argv[2], sys.argv[3])
+    if not sys.argv[3]:
+        backg(sys.argv[1], sys.argv[2])
+    else:
+        backg(sys.argv[1], sys.argv[2], sys.argv[3])
 
