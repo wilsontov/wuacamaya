@@ -4,6 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-backg	../background.py	/^def backg(images_path, save_path, extension = "*.jpg"):$/;"	kind:function	line:3
+backg	../background.py	/^def backg(images_path, save_path, extension = "*.jpg"):$/;"	kind:function	line:11
 background.py	../background.py	1;"	kind:file	line:1
 test.py	../test.py	1;"	kind:file	line:1
