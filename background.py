@@ -1,3 +1,7 @@
+"""
+Hecho por Jaisir & Wilson
+"""
+
 from SimpleCV import *
 import time
 
