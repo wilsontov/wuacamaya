@@ -1,6 +1,5 @@
 """ Hecho por Wilson Tovar """
 
-from __future__ import print_function
 import sys
 import zerorpc
 from background import backg as bg
@@ -13,7 +12,7 @@ class backApi(object):
       else:
         return bg(images_path, save_path, extension)
     except Exception as e:
-      return "ERROR - Argumentos"
+      return "ERROR. Ha ocurrido un error. Por favor, verifique los argumentos."
 
   def echo(self):
     return 'Hola we.'
