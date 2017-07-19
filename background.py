@@ -1,7 +1,7 @@
 """
 Hecho por Jaisir & Wilson
 
-Librerias:
+Librerias de terceros necesarias:
 - SimpleCV
 """
 
@@ -9,7 +9,6 @@ from SimpleCV import *
 import time
 
 def backg(images_path, save_path, extension = "*.jpg"):
-    init = time.time()
     """ Eliminar el fondo blanco de una imagen
 
         Keyword arguments:
@@ -17,6 +16,14 @@ def backg(images_path, save_path, extension = "*.jpg"):
         save_path -- la carpeta donde se guardaran las imagenes modificadas
         extension -- extension de las imagenes (default: *.jpg)
     """
+
+    if not extension == "*.jpg":
+        extension = str(extension)
+
+    images_path = str(images_path)
+    save_path = str(save_path)
+    init = time.time()
+
     directory = os.path.join(images_path, extension)
     files = glob.glob(directory)
 
@@ -33,6 +40,7 @@ def backg(images_path, save_path, extension = "*.jpg"):
     
     end = time.time()
     print(str(i) + " imagenes procesadas correctamente. Tiempo: " + str(end - init) + " segs.")
+    return str(i) + " imagenes procesadas correctamente. Tiempo: " + str(end - init) + " segs."
 
 if __name__ == "__main__":
     """Correr el modulo desde la consola."""
