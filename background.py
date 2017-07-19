@@ -8,7 +8,8 @@ Librerias de terceros necesarias:
 from SimpleCV import *
 import time
 
-def backg(images_path, save_path, extension = "*.jpg"):
+
+def backg(images_path, save_path, extension="*.jpg"):
     """ Eliminar el fondo blanco de una imagen
 
         Keyword arguments:
@@ -37,10 +38,12 @@ def backg(images_path, save_path, extension = "*.jpg"):
         result = new_img - mask.invert()
         # result.show()
         result.save(save_path + '/bk' + str(i) + ".jpg")
-    
+
     end = time.time()
-    print(str(i) + " imagenes procesadas correctamente. Tiempo: " + str(end - init) + " segs.")
+    print(str(i) + " imagenes procesadas correctamente. Tiempo: " +
+          str(end - init) + " segs.")
     return str(i) + " imagenes procesadas correctamente. Tiempo: " + str(end - init) + " segs."
+
 
 if __name__ == "__main__":
     """Correr el modulo desde la consola."""
