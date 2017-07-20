@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Hecho por Wilson Tovar """
 
 import sys
@@ -6,7 +7,7 @@ from background import backg as bg
 
 
 class BackgroundAPI(object):
-    """ API para la realización de tareas y conexión de la GUI con python """
+    """ API para la realización de tareas y conexion de la GUI con python """
 
     def bkg(self, images_path, save_path, extension=""):
         """ Realizar la  """

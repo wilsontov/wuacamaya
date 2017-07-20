@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Hecho por Jaisir & Wilson
 
