@@ -9,6 +9,8 @@ Librerias de terceros necesarias:
 
 from SimpleCV import *
 import time
+import os
+import glob
 
 
 def backg(images_path, save_path, extension="*.jpg"):
@@ -19,7 +21,6 @@ def backg(images_path, save_path, extension="*.jpg"):
         save_path -- la carpeta donde se guardaran las imagenes modificadas
         extension -- extension de las imagenes (default: *.jpg)
     """
-
     if not extension == "*.jpg":
         extension = str(extension)
 
@@ -36,7 +37,8 @@ def backg(images_path, save_path, extension="*.jpg"):
         """Recorrer el directorio"""
         # print(file)
         new_img = Image(file)
-        mask = new_img.hueDistance(color=Color.WHITE).binarize()
+        mask = new_img.hueDistance(color=Colzerorpc
+SimpleCVor.WHITE).binarize()
         result = new_img - mask.invert()
         # result.show()
         result.save(save_path + '/bk' + str(i) + ".jpg")
