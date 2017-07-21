@@ -37,8 +37,7 @@ def backg(images_path, save_path, extension="*.jpg"):
         """Recorrer el directorio"""
         # print(file)
         new_img = Image(file)
-        mask = new_img.hueDistance(color=Colzerorpc
-SimpleCVor.WHITE).binarize()
+        mask = new_img.hueDistance(color=Color.WHITE).binarize()
         result = new_img - mask.invert()
         # result.show()
         result.save(save_path + '/bk' + str(i) + ".jpg")
