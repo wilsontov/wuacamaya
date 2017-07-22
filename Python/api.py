@@ -5,7 +5,6 @@ import sys
 import zerorpc
 from background import backg as bg
 
-
 class BackgroundAPI(object):
     """ API para la realización de tareas y conexion de la GUI con python """
 

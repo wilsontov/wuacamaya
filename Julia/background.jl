@@ -10,21 +10,22 @@ function backg(path::String, save_path::String)
   """
   init = Float64(time())
   dir = Array{String,1}(readdir(path))
-  
+
   for file in dir
-      img = SimpleCV.Image(path*file)
-      mask = img[:hueDistance]()[:binarize]()
-      result = img - mask[:invert]()
-      result[:save](save_path*file)
+    img = SimpleCV.Image(path*file)
+    mask = img[:hueDistance]()[:binarize]()
+    result = img - mask[:invert]()
+    result[:save](save_path*file)
   end
 
-  end_time = Float64(time())
-  println(string(length(dir)," imagenes procesadas. Tiempo: ",end_time - init," segs."))
+  end_time = Float64(time())  # Tiempo final
+  info(string(length(dir)," imagenes procesadas. Tiempo: ",end_time - init," segs."))
+  return string(length(dir)," imagenes procesadas. Tiempo: ",end_time - init," segs.")
 end
 
-#Function main()
+# __name__ == "__main__"
 if length(ARGS) == 2
   backg(ARGS[1], ARGS[2])
 else
-  print("Debe especificar todos los argumentos necesarios.")
+  error("Debe especificar todos los argumentos necesarios.")
 end
