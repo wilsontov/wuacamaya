@@ -1,2 +1,7 @@
-zerorpc
-SimpleCV
+Python:
+- SimpleCV
+
+Julia:
+- PyCall
+- Compat
+- JuliaWebAPI
