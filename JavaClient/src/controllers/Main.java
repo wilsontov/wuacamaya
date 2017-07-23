@@ -1,24 +1,23 @@
-package telemedicineproject;
+package controllers;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.*;
 
-public class frontend extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     private final ArrayList<String> fileNames;
     private int index;
     private int activateProcessing;
-    private String openPath;
-    private String savePath;
+    private String openPath; // Carpeta que contiene las imagenes
+    private String savePath; // Carpeta donde se guardaran las imagenes procesadas
 
     /**
      * Creates new form frontend
      */
-    public frontend() {
+    public Main() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         scrollPane.setBackground(Color.white);
@@ -27,11 +26,10 @@ public class frontend extends javax.swing.JFrame {
         fileNames = new ArrayList<>();
         index = 0;
         activateProcessing = 0;
-        image = null;
         //table.getTableHeader().setUI(null);
         //table.setBackground(Color.white);
     }
-    
+
     /**
      *
      * @throws IOException
@@ -60,7 +58,6 @@ public class frontend extends javax.swing.JFrame {
             startProcessingButton.setEnabled(true);
         }
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,28 +118,35 @@ public class frontend extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(12, 2, 98));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Control panel");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("wuacamaya");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(20, 20, 20))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         startCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lens.png"))); // NOI18N
         startCamera.setText("Start camera");
+        startCamera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startCameraActionPerformed(evt);
+            }
+        });
 
         savePathButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/documents.png"))); // NOI18N
         savePathButton.setText("     Save path");
@@ -178,7 +182,7 @@ public class frontend extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LoadFolderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(LoadFolderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(startProcessingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(startCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(savePathButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -212,7 +216,7 @@ public class frontend extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nextButton)
                     .addComponent(previousButton))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(java.awt.Color.white);
@@ -231,7 +235,7 @@ public class frontend extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,12 +261,12 @@ public class frontend extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Cargar folder de imagenes para procesar.
      *
-     * @param evt
+     * @param evt click en el boton LoadFolderButton
      */
     private void LoadFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadFolderButtonActionPerformed
-        int returnVal = chooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
             File[] listOfFiles = file.listFiles();
             for (File listOfFile : listOfFiles) {
@@ -278,8 +282,9 @@ public class frontend extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadFolderButtonActionPerformed
 
     /**
+     * Iniciar proceso de Julia.
      *
-     * @param evt
+     * @param evt click en el boton startProcessingButton.
      */
     private void startProcessingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProcessingButtonActionPerformed
 
@@ -297,7 +302,7 @@ public class frontend extends javax.swing.JFrame {
             process.waitFor();
         } catch (IOException | InterruptedException ex) {
 
-            Logger.getLogger(frontend.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         fileNames.stream().forEach((String names) -> {
@@ -307,7 +312,7 @@ public class frontend extends javax.swing.JFrame {
         try {
             loadPic();
         } catch (IOException ex) {
-            Logger.getLogger(frontend.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         activateProcessing = 0;
@@ -320,23 +325,24 @@ public class frontend extends javax.swing.JFrame {
     }//GEN-LAST:event_startProcessingButtonActionPerformed
 
     /**
+     * Carpeta donde se guardan las imagenes procesadas.
      *
-     * @param evt
+     * @param evt click en el boton savePathButton.
      */
     private void savePathButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePathButtonActionPerformed
-        int returnVal = saveChooser.showSaveDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
+        if (saveChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = saveChooser.getSelectedFile();
             savePath = file.getAbsolutePath() + "/";
             validateProcessing();
         } else {
-            System.err.println("File access cancelled by user.");
+            System.err.println("ERROR: File access cancelled by user.");
         }
     }//GEN-LAST:event_savePathButtonActionPerformed
 
     /**
+     * Siguiente imagen.
      *
-     * @param evt
+     * @param evt click en el boton nextButton.
      */
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         if (index < fileNames.size() - 1) {
@@ -346,13 +352,14 @@ public class frontend extends javax.swing.JFrame {
         try {
             loadPic();
         } catch (IOException ex) {
-            Logger.getLogger(frontend.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_nextButtonActionPerformed
 
     /**
+     * Imagen anterior.
      *
-     * @param evt
+     * @param evt click en el boton previousButton.
      */
     private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
         if (index > 0) {
@@ -362,9 +369,18 @@ public class frontend extends javax.swing.JFrame {
         try {
             loadPic();
         } catch (IOException ex) {
-            Logger.getLogger(frontend.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_previousButtonActionPerformed
+
+    /**
+     * Iniciar camara.
+     *
+     * @param evt
+     */
+    private void startCameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startCameraActionPerformed
+        // TODO Escribir metodo.
+    }//GEN-LAST:event_startCameraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,20 +399,21 @@ public class frontend extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frontend().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }
