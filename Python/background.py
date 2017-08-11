@@ -21,7 +21,7 @@ def backg(images_path, save_path, extension="*.jpg"):
         save_path -- la carpeta donde se guardaran las imagenes modificadas
         extension -- extension de las imagenes (default: *.jpg)
     """
-    if not extension == "*.jpg":
+    if extension != "*.jpg":
         extension = str(extension)
 
     images_path = str(images_path)
